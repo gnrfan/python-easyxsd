@@ -5,7 +5,7 @@ def xml_from_string(xmlstr):
     Returns an lxml.etree._ElementTree object from a string
     containing a valid XML document.
     """
-    return etree.XML(xmlstr.strip())
+    return etree.XML(str(xmlstr).strip())
 
 def xml_from_file(filepath):
     """
@@ -19,7 +19,7 @@ def xsd_from_string(xsdstr):
     Returns an lxml.etree.XMLSchema object from a string
     containing a valid XML document.
     """
-    xml = etree.XML(xsdstr.strip())
+    xml = etree.XML(str(xsdstr).strip())
     return etree.XMLSchema(xml)
 
 def xsd_from_file(filepath):

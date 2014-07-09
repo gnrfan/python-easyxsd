@@ -5,30 +5,45 @@ def xml_from_string(xmlstr):
     Returns an lxml.etree._ElementTree object from a string
     containing a valid XML document.
     """
-    return etree.XML(str(xmlstr).strip())
+    try:
+        return etree.XML(str(xmlstr).strip())
+    except etree.XMLSyntaxError:
+        return None
+
 
 def xml_from_file(filepath):
     """
     Returns an lxml.etree._ElementTree object from a file
     containing a valid XML document.
     """
-    return etree.parse(filepath)
+    try:
+        return etree.parse(filepath)
+    except etree.XMLSyntaxError:
+        return None
+
 
 def xsd_from_string(xsdstr):
     """
     Returns an lxml.etree.XMLSchema object from a string
     containing a valid XML document.
     """
-    xml = etree.XML(str(xsdstr).strip())
-    return etree.XMLSchema(xml)
+    try:
+        xml = etree.XML(str(xsdstr).strip())
+        return etree.XMLSchema(xml)
+    except etree.XMLSyntaxError:
+        return None
+
 
 def xsd_from_file(filepath):
     """
     Returns an lxml.etree.XMLSchema object from a file
     containing a valid XML document.
     """
-    xml = etree.parse(filepath)
-    return etree.XMLSchema(xml)
+    try:
+        xml = etree.parse(filepath)
+        return etree.XMLSchema(xml)
+    except etree.XMLSyntaxError:
+        return None
 
 def validate(xml, xsd):
     """
